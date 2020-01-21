@@ -28,7 +28,7 @@ import Cart from './components/cart';
 // console.log(spread(arr));
 
 // let obj = {
-//   a: 1, 
+//   a: 1,
 //   b: 2,
 //   c: {
 //     a: 1,

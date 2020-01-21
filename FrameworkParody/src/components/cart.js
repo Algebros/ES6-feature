@@ -1,7 +1,7 @@
 import { Parody } from '../parody';
 import InputNumber from './input-number';
 
-export default class Cart extends Parody{
+export default class Cart extends Parody {
   constructor(props) {
     super(props);
 
@@ -9,9 +9,9 @@ export default class Cart extends Parody{
       products: [
         { price: 1000, rest: 10, current: 1 },
         { price: 2000, rest: 5, current: 2 },
-        { price: 3000, rest: 3, current: 3 }
-      ]
-    }
+        { price: 3000, rest: 3, current: 3 },
+      ],
+    };
   }
 
   onChange(ind, val) {
@@ -20,10 +20,10 @@ export default class Cart extends Parody{
   }
 
   render() {
-    let div = document.createElement('div');
-    
+    const div = document.createElement('div');
+
     this.state.products.forEach((elem, i) => {
-      let input = (new InputNumber({
+      const input = (new InputNumber({
         min: 1,
         max: elem.rest,
         value: elem.current,
@@ -31,9 +31,9 @@ export default class Cart extends Parody{
       })).render();
 
       div.append(input);
-    })
+    });
 
-    let summary = document.createElement('div');
+    const summary = document.createElement('div');
     summary.innerHTML = this.state.products.reduce((total, item) => total + item.price * item.current, 0);
     div.append(summary);
 

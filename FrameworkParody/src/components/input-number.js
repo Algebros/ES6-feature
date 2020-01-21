@@ -4,15 +4,15 @@ export default class InputNumber extends Parody {
   constructor(props) {
     super(props);
 
-    this.onChange = ('change' in props) ? props.change : function(){};
+    this.onChange = ('change' in props) ? props.change : function () {};
   }
 
   _normalizeValue(val) {
     let newVal = parseInt(val);
 
-    if(isNaN(newVal) || newVal < this.props.min) {
+    if (isNaN(newVal) || newVal < this.props.min) {
       newVal = this.props.min;
-    } else if(newVal > this.props.max) {
+    } else if (newVal > this.props.max) {
       newVal = this.props.max;
     }
 
@@ -20,7 +20,7 @@ export default class InputNumber extends Parody {
   }
 
   render() {
-    let min = createNode('input', {
+    const min = createNode('input', {
       type: 'button',
       value: '-',
       onclick: () => {
@@ -29,7 +29,7 @@ export default class InputNumber extends Parody {
       className: 'inputNumber__min',
     });
 
-    let plus = document.createElement('input');
+    const plus = document.createElement('input');
     plus.setAttribute('type', 'button');
     plus.value = '+';
     plus.addEventListener('click', (e) => {
@@ -44,7 +44,7 @@ export default class InputNumber extends Parody {
       this._normalizeValue(e.target.value);
     });
 
-    let root = document.createElement('div');
+    const root = document.createElement('div');
     root.append(min);
     root.append(num);
     root.append(plus);
