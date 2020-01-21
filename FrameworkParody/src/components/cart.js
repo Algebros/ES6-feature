@@ -1,4 +1,4 @@
-import { Parody } from '../parody';
+import { Parody, prDOM } from '../parody';
 import InputNumber from './input-number';
 
 export default class Cart extends Parody {
@@ -20,22 +20,29 @@ export default class Cart extends Parody {
   }
 
   render() {
-    const div = document.createElement('div');
+    let sum = this.state.products.reduce((total, item) => total + item.price * item.current, 0);
+    return super.render(
+      <div>
+        <InputNumber min="1" max="5" value="3" />
+        <div>{sum}</div>
+      </div>
+    );
+    // const div = document.createElement('div');
 
-    this.state.products.forEach((elem, i) => {
-      const input = (new InputNumber({
-        min: 1,
-        max: elem.rest,
-        value: elem.current,
-        change: this.onChange.bind(this, i),
-      })).render();
+    // this.state.products.forEach((elem, i) => {
+    //   const input = (new InputNumber({
+    //     min: 1,
+    //     max: elem.rest,
+    //     value: elem.current,
+    //     change: this.onChange.bind(this, i),
+    //   })).render();
 
-      div.append(input);
-    });
+    //   div.append(input);
+    // });
 
-    const summary = document.createElement('div');
-    summary.innerHTML = this.state.products.reduce((total, item) => total + item.price * item.current, 0);
-    div.append(summary);
+    // const summary = document.createElement('div');
+    // summary.innerHTML = this.state.products.reduce((total, item) => total + item.price * item.current, 0);
+    // div.append(summary);
 
     return super.render(div);
   }

@@ -25,13 +25,23 @@ export class Parody {
 }
 
 export function prDOM(tag, props, ...children) {
+  if(typeof tag === 'function') {
+    return (new tag(props)).render();
+  }
+  
   let node = document.createElement(tag);
 
   children.forEach(child => {
-    node.append(child);
+    if(child instanceof HTMLElement) {
+      node.append(child);
+    } else {
+      let textNode = document.createTextNode(child);
+      node.append(textNode);
+    }
+    
   });
 
   Object.assign(node, props);
-  
+
   return node;
 }
