@@ -3,17 +3,50 @@ import { Parody } from '../parody';
 export default class InputNumber extends Parody {
   constructor(props) {
     super(props);
+
+    this.onChange = ('change' in props) ? props.change : function(){};
+  }
+
+  _normalizeValue(val) {
+    let newVal = parseInt(val);
+
+    if(isNaN(newVal) || newVal < this.props.min) {
+      newVal = this.props.min;
+    } else if(newVal > this.props.max) {
+      newVal = this.props.max;
+    }
+
+    this.onChange(newVal);
   }
 
   render() {
+    let min = document.createElement('input');
+    min.setAttribute('type', 'button');
+    min.value = '-';
+    min.addEventListener('click', (e) => {
+      console.log('min');
+    });
+
+    let plus = document.createElement('input');
+    plus.setAttribute('type', 'button');
+    plus.value = '+';
+    plus.addEventListener('click', (e) => {
+      console.log('plus');
+    });
+
     const num = document.createElement('input');
     num.className = 'inputNumber__value';
     num.setAttribute('type', 'text');
     num.value = this.props.value;
     num.addEventListener('change', (e) => {
-      console.log(e.target.value);
+      this._normalizeValue(e.target.value);
     });
 
-    return num;
+    let root = document.createElement('div');
+    root.append(min);
+    root.append(num);
+    root.append(plus);
+
+    return root;
   }
 }
