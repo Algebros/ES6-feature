@@ -24,12 +24,14 @@ export class Parody {
   }
 }
 
-export function createNode(tagName, props) {
-  const node = document.createElement(tagName);
+export function prDOM(tag, props, ...children) {
+  let node = document.createElement(tag);
 
-  for (const name in props) {
-    node[name] = props[name];
-  }
+  children.forEach(child => {
+    node.append(child);
+  });
 
+  Object.assign(node, props);
+  
   return node;
 }
