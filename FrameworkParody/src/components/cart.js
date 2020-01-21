@@ -16,7 +16,7 @@ export default class Cart extends Parody{
 
   onChange(ind, val) {
     this.state.products[ind].current = val;
-    console.log(this.state)
+    this.render();
   }
 
   render() {
@@ -37,6 +37,6 @@ export default class Cart extends Parody{
     summary.innerHTML = this.state.products.reduce((total, item) => total + item.price * item.current, 0);
     div.append(summary);
 
-    return div;
+    return super.render(div);
   }
 }

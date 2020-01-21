@@ -24,14 +24,14 @@ export default class InputNumber extends Parody {
     min.setAttribute('type', 'button');
     min.value = '-';
     min.addEventListener('click', (e) => {
-      console.log('min');
+      this._normalizeValue(this.props.value - 1);
     });
 
     let plus = document.createElement('input');
     plus.setAttribute('type', 'button');
     plus.value = '+';
     plus.addEventListener('click', (e) => {
-      console.log('plus');
+      this._normalizeValue(this.props.value + 1);
     });
 
     const num = document.createElement('input');
@@ -47,6 +47,6 @@ export default class InputNumber extends Parody {
     root.append(num);
     root.append(plus);
 
-    return root;
+    return super.render(root);
   }
 }

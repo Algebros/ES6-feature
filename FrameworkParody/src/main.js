@@ -1,8 +1,10 @@
 import Cart from './components/cart';
 
-let cart = new Cart();
-console.log(cart)
-document.querySelector('body').append(cart.render())
+// let cart = new Cart();
+// console.log(cart)
+// document.querySelector('body').append(cart.render())
+
+(new Cart()).bindMount('body').render();
 
 // let arr = [1, 2, 3, [4, 5, 6, {a: 7, b: 8, c: 9}], 10];
 
