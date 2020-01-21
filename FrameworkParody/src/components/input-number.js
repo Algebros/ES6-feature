@@ -1,4 +1,4 @@
-import { Parody } from '../parody';
+import { Parody, createNode } from '../parody';
 
 export default class InputNumber extends Parody {
   constructor(props) {
@@ -20,11 +20,13 @@ export default class InputNumber extends Parody {
   }
 
   render() {
-    let min = document.createElement('input');
-    min.setAttribute('type', 'button');
-    min.value = '-';
-    min.addEventListener('click', (e) => {
-      this._normalizeValue(this.props.value - 1);
+    let min = createNode('input', {
+      type: 'button',
+      value: '-',
+      onclick: () => {
+        this._normalizeValue(this.props.value - 1);
+      },
+      className: 'inputNumber__min',
     });
 
     let plus = document.createElement('input');

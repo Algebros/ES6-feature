@@ -23,3 +23,13 @@ export class Parody {
     return node;
   }
 }
+
+export function createNode(tagName, props) {
+  let node = document.createElement(tagName);
+
+  for (let name in props) {
+    node[name] = props[name]
+  }
+
+  return node;
+}
